@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".TestActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp">
+
+        <TextView
+            android:id="@+id/textView_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score: 0"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textView_question_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_score"
+            android:text="Quetion: 1/x" />
+
+        <TextView
+            android:id="@+id/text_view_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/radio_group"
+            android:layout_marginBottom="16dp"
+            android:text="Question for the test Question for the test Question for the test Question for the test"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <RadioButton
+                android:id="@+id/radio_option_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option 1" />
+
+            <RadioButton
+                android:id="@+id/radio_option_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option 2" />
+
+            <RadioButton
+                android:id="@+id/radio_option_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option 3" />
+
+            <RadioButton
+                android:id="@+id/radio_option_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option 4" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/button_confirm_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radio_group"
+            android:layout_marginTop="16dp"
+            android:text="Confirm" />
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
