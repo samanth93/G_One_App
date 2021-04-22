@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">G One App</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="retype_pass">Retype Password</string>
+    <string name="register">Register</string>
+    <string name="existing_user">Existing user! Go to Sign in page</string>
+    <string name="sign_in">Sign In</string>
+    <string name="score_0">Score: 0</string>
+    <string name="question_1">Quetion: 1/x</string>
+    <string name="Question_for_test">Question for the test Question for the test Question for the test Question for the test</string>
+    <string name="option_1">Option 1</string>
+    <string name="option_2">Option 2</string>
+    <string name="option_3">Option 3</string>
+    <string name="option_4">Option 4</string>
+    <string name="confirm">confirm</string>
+    <string name="main_page_logo">Test Drive Logo</string>
 </resources>

@@ -1,41 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="382dp"
+        android:layout_height="36dp"
+        android:contentDescription="@string/main_page_logo"
+        app:srcCompat="@drawable/test_drive_image" />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="User Name"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        android:hint="@string/user_name"
+        android:inputType="text"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/password"
         android:layout_marginTop="50dp"
         android:inputType = "textPassword"
-        android:layout_below="@+id/username"/>
+        android:layout_below="@+id/username"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/repassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Retype Password"
+        android:hint="@string/retype_pass"
         android:layout_marginTop="50dp"
         android:inputType = "textPassword"
-        android:layout_below="@+id/password"/>
+        android:layout_below="@+id/password"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnsignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/register"
         android:layout_marginTop="50dp"
         android:layout_below="@+id/repassword"/>
 
@@ -43,7 +55,7 @@
         android:id="@+id/btnsignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Existing user! Go to Sign in page"
+        android:text="@string/existing_user"
         android:layout_marginTop="50dp"
         android:layout_below="@+id/btnsignup"/>
 

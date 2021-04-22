@@ -17,7 +17,7 @@
             android:id="@+id/textView_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score: 0"
+            android:text="@string/score_0"
             android:textColor="@color/black" />
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView_score"
-            android:text="Quetion: 1/x" />
+            android:text="@string/question_1" />
 
         <TextView
             android:id="@+id/text_view_question"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/radio_group"
             android:layout_marginBottom="16dp"
-            android:text="Question for the test Question for the test Question for the test Question for the test"
+            android:text="@string/Question_for_test"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -47,25 +47,25 @@
                 android:id="@+id/radio_option_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 1" />
+                android:text="@string/option_1" />
 
             <RadioButton
                 android:id="@+id/radio_option_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 2" />
+                android:text="@string/option_2" />
 
             <RadioButton
                 android:id="@+id/radio_option_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 3" />
+                android:text="@string/option_3" />
 
             <RadioButton
                 android:id="@+id/radio_option_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 4" />
+                android:text="@string/option_4" />
 
         </RadioGroup>
 
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/radio_group"
             android:layout_marginTop="16dp"
-            android:text="Confirm" />
+            android:text="@string/confirm" />
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
