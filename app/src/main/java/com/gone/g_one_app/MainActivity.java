@@ -39,9 +39,13 @@ public class MainActivity extends AppCompatActivity {
                         if(checkuser==false){
                             Boolean insert = DB.insertData(user, pass);
                             if(insert==true){
-                                Toast.makeText(MainActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(),TestActivity.class);
-                                startActivity(intent);
+                                if(DB.insertAttemptCount(user)){
+                                    Toast.makeText(MainActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(),TestActivity.class);
+                                    startActivity(intent);
+                                }else{
+                                    Toast.makeText(MainActivity.this, "You exceeded 3 attempts, Sorry!!", Toast.LENGTH_SHORT).show();
+                                }
                             }else{
                                 Toast.makeText(MainActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                             }

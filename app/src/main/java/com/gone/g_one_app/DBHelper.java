@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final String DBNAME = "Gone.db";
+    private static final String TAG = "DBHelper";
     public DBHelper(Context context) {
-        super(context, "Login.db", null, 1);
+        super(context, "Gone.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users(username TEXT primary key, password TEXT)");
+        MyDB.execSQL("create Table users(username TEXT primary key, password TEXT, numberofattempts INTEGER DEFAULT 0)");
         MyDB.execSQL("create Table questions(questionid INTEGER primary key autoincrement not null, testquestion TEXT, optionone TEXT, optiontwo TEXT, optionthree TEXT, optionfour TEXT, answer TEXT)");
         fillQuestionsTable(MyDB);
     }
@@ -67,6 +67,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
         MyDB.execSQL("drop Table if exists users");
+        MyDB.execSQL("drop Table if exists questions");
     }
 
     public Boolean insertData(String username, String password){
@@ -78,6 +79,25 @@ public class DBHelper extends SQLiteOpenHelper {
         if(result==-1) return false;
         else
             return true;
+    }
+
+    public Boolean insertAttemptCount(String user){
+        Log.v(TAG, "User=" + user);
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues= new ContentValues();
+        Cursor cursor = MyDB.rawQuery("SELECT numberofattempts FROM users where username = ?", new String[]{user});
+        if(cursor.moveToFirst()){
+            int x = cursor.getInt(cursor.getColumnIndex("numberofattempts"))+1;
+            Log.v(TAG, "numberofattempts"+x);
+            contentValues.put("numberofattempts", x);
+            if(x<4){
+                long result = MyDB.update("users", contentValues,"username = '"+user+"'", null);
+                if(result==-1) return false;
+                else
+                    return true;
+            }
+        }
+        return false;
     }
 
     public Boolean checkusername(String username) {

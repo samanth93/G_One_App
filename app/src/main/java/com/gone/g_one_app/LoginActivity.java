@@ -35,9 +35,13 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     Boolean checkuserpass = DB.checkusernamepassword(user, pass);
                     if(checkuserpass==true){
-                        Toast.makeText(com.gone.g_one_app.LoginActivity.this, "Sign in successfull", Toast.LENGTH_SHORT).show();
-                        Intent intent  = new Intent(getApplicationContext(), TestActivity.class);
-                        startActivity(intent);
+                        if(DB.insertAttemptCount(user)){
+                            Toast.makeText(com.gone.g_one_app.LoginActivity.this, "Sign in successfull", Toast.LENGTH_SHORT).show();
+                            Intent intent  = new Intent(getApplicationContext(), TestActivity.class);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(com.gone.g_one_app.LoginActivity.this, "You exceeded 3 attempts, Sorry!!", Toast.LENGTH_SHORT).show();
+                        }
                     }else{
                         Toast.makeText(com.gone.g_one_app.LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                     }
