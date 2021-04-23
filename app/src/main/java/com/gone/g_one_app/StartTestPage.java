@@ -23,6 +23,9 @@ public class StartTestPage extends AppCompatActivity {
     private TextView textviewTestThreeResult;
     private List<TestScore> scores;
 
+    //    onCreate is called when the activity first starts, we can programatically set UI here
+//    by using the
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class StartTestPage extends AppCompatActivity {
         buttonStartQuiz.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+//                    checking for exceeding count
                     if(DB.checkAttemptCount(user) < 3){
                         startQuiz();
                     }else{
@@ -49,12 +53,14 @@ public class StartTestPage extends AppCompatActivity {
         });
     }
 
+//    start button to start the quiz
     private void startQuiz() {
         Intent intent = new Intent(StartTestPage.this, TestActivity.class);
+//        to receive a call back and direct flow to onActivityResult
         startActivityForResult(intent, REQUEST_CODE_TEST);
     }
 
-
+// this function acts as a call back for startActivityForResult
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -72,11 +78,13 @@ public class StartTestPage extends AppCompatActivity {
         }
     }
 
+//    Updating the attempts
     private void updateAttemptsOnView(String user) {
         int attempts = DB.checkAttemptCount(user);
         textViewNumberOfAttempts.setText("Number of attempts: "+attempts);
     }
 
+//    updating the previous test scores
     private void updatePreviousTestScoresOnView(String user) {
         scores = DB.getAllTestsOfUser(user);
         for(int i=0;i<scores.size();i++){

@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.G_One_App" >
+<!--        Declaration of all activities, to be able to use in the application-->
         <activity
             android:name=".StartTestPage"
             android:label="@string/title_activity_start_test_page"

@@ -11,15 +11,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final int REQUEST_CODE_TEST = 1;
     EditText username, password;
     Button btnlogin;
     DBHelper DB;
+
+//    onCreate is called when the activity first starts, we can programatically set UI here
+//    by using the
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+//  Intilizing all components in the view
         username = (EditText) findViewById(R.id.username1);
         password = (EditText) findViewById(R.id.password1);
         btnlogin = (Button) findViewById(R.id.btnsignin1);
@@ -31,17 +33,17 @@ public class LoginActivity extends AppCompatActivity {
 
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
-
-                if(user.equals("")||pass.equals(""))
+//checking with the database and letting user into the app
+                if (user.equals("") || pass.equals(""))
                     Toast.makeText(com.gone.g_one_app.LoginActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-                else{
+                else {
                     Boolean checkuserpass = DB.checkusernamepassword(user, pass);
-                    if(checkuserpass==true){
+                    if (checkuserpass == true) {
                         Toast.makeText(com.gone.g_one_app.LoginActivity.this, "Sign in successfull", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(),StartTestPage.class);
+                        Intent intent = new Intent(getApplicationContext(), StartTestPage.class);
                         intent.putExtra("user", user);
                         startActivity(intent);
-                    }else{
+                    } else {
                         Toast.makeText(com.gone.g_one_app.LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                     }
                 }

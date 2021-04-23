@@ -34,8 +34,9 @@ public class TestActivity extends AppCompatActivity {
     private Question currentQuestion;
     private int score;
     private boolean answered;
-    private long backPressedTime;
 
+//    onCreate is called when the activity first starts, we can programatically set UI here
+//    by using the
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +54,11 @@ public class TestActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
         questionList = dbHelper.getAllQuestions();
         questionCountTotal = questionList.size();
+//        for changing the order of questions
         Collections.shuffle(questionList);
+//        to show next question based on conditions
         showQuestion();
+//        validation of answer and senting to next state
         buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +75,7 @@ public class TestActivity extends AppCompatActivity {
         });
     }
 
+//    Checking answer
     private void checkAnswer() {
         answered = true;
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
@@ -82,6 +87,7 @@ public class TestActivity extends AppCompatActivity {
         displayCorrectAnswer();
     }
 
+//    displaying correct answer
     private void displayCorrectAnswer() {
         rbOne.setTextColor(Color.RED);
         rbTwo.setTextColor(Color.RED);
@@ -134,6 +140,7 @@ public class TestActivity extends AppCompatActivity {
         }
     }
 
+//    close activity and go to previous activity with score
     private void finishTest() {
         Intent resultIntent = new Intent();
         resultIntent.putExtra(FINAL_SCORE, score);
