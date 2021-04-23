@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/text_view_finalscore"
         android:layout_marginBottom="32dp"
-        android:text="Number of attempts: 0"
+        android:text="@string/num_attempts_0"
         android:textSize="20sp" />
 
     <TextView
@@ -61,7 +61,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="32dp"
-        android:text="Result: 0"
+        android:text="@string/res_0"
         android:textSize="30sp" />
 
     <Button
@@ -69,6 +69,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Start Test" />
+        android:text="@string/start_test" />
 
 </RelativeLayout>
