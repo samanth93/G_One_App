@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="com.gone.g_one_app.StartTestPage">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/g1_test"
+        android:textColor="@android:color/black"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/text_view_test_one_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/text_view_test_two_result"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text=""
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_view_test_two_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/text_view_test_three_result"
+        android:layout_marginBottom="10dp"
+        android:text=""
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_view_test_three_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/text_view_numberOfAttempts"
+        android:layout_marginBottom="10dp"
+        android:text=""
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_view_numberOfAttempts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/text_view_finalscore"
+        android:layout_marginBottom="32dp"
+        android:text="Number of attempts: 0"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_view_finalscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_start_test"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="32dp"
+        android:text="Result: 0"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/button_start_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Start Test" />
+
+</RelativeLayout>

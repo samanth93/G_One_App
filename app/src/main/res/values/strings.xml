@@ -15,4 +15,14 @@
     <string name="option_4">Option 4</string>
     <string name="confirm">confirm</string>
     <string name="main_page_logo">Test Drive Logo</string>
+    <string name="title_activity_start_test_page">StartTestPage</string>
+    <!-- Strings used for fragments for navigation -->
+<!--    <string name="first_fragment_label">First Fragment</string>-->
+<!--    <string name="second_fragment_label">Second Fragment</string>-->
+<!--    <string name="next">Next</string>-->
+<!--    <string name="previous">Previous</string>-->
+
+<!--    <string name="hello_first_fragment">Hello first fragment</string>-->
+<!--    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>-->
+    <string name="g1_test">G1 Test</string>
 </resources>

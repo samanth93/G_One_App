@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
-    public static final String EXTRA_SCORE = "extraScore";
+    public static final String FINAL_SCORE = "finalScore";
     private TextView tvQuestion;
     private TextView tvScore;
     private TextView tvQuestionCount;
@@ -136,8 +136,9 @@ public class TestActivity extends AppCompatActivity {
 
     private void finishTest() {
         Intent resultIntent = new Intent();
-        resultIntent.putExtra(EXTRA_SCORE, score);
+        resultIntent.putExtra(FINAL_SCORE, score);
         setResult(RESULT_OK, resultIntent);
+//        finish is to close the activity
         finish();
     }
 

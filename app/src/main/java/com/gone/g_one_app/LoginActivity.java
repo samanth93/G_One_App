@@ -2,6 +2,7 @@ package com.gone.g_one_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final int REQUEST_CODE_TEST = 1;
     EditText username, password;
     Button btnlogin;
     DBHelper DB;
@@ -35,13 +37,10 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     Boolean checkuserpass = DB.checkusernamepassword(user, pass);
                     if(checkuserpass==true){
-                        if(DB.insertAttemptCount(user)){
-                            Toast.makeText(com.gone.g_one_app.LoginActivity.this, "Sign in successfull", Toast.LENGTH_SHORT).show();
-                            Intent intent  = new Intent(getApplicationContext(), TestActivity.class);
-                            startActivity(intent);
-                        }else{
-                            Toast.makeText(com.gone.g_one_app.LoginActivity.this, "You exceeded 3 attempts, Sorry!!", Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(com.gone.g_one_app.LoginActivity.this, "Sign in successfull", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(),StartTestPage.class);
+                        intent.putExtra("user", user);
+                        startActivity(intent);
                     }else{
                         Toast.makeText(com.gone.g_one_app.LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                     }
@@ -49,4 +48,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == REQUEST_CODE_TEST) {
+//            if (resultCode == RESULT_OK) {
+//                int score = data.getIntExtra(TestActivity.FINAL_SCORE, 0);
+//                Log.v("MainActivity", "Score=" + score);
+//            }
+//        }
+//    }
 }

@@ -20,8 +20,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users(username TEXT primary key, password TEXT, numberofattempts INTEGER DEFAULT 0)");
+        MyDB.execSQL("create Table users(username TEXT primary key not null, password TEXT, numberofattempts INTEGER DEFAULT 0)");
         MyDB.execSQL("create Table questions(questionid INTEGER primary key autoincrement not null, testquestion TEXT, optionone TEXT, optiontwo TEXT, optionthree TEXT, optionfour TEXT, answer TEXT)");
+        MyDB.execSQL("create Table users_test(testid INTEGER primary key autoincrement not null, username TEXT not null, teststatus TEXT DEFAULT 'Fail', score INTEGER DEFAULT 0, created_at DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (username) REFERENCES users (username))");
         fillQuestionsTable(MyDB);
     }
     private void fillQuestionsTable(SQLiteDatabase myDB) {
@@ -64,6 +65,23 @@ public class DBHelper extends SQLiteOpenHelper {
         return questionsList;
     }
 
+    public List<TestScore> getAllTestsOfUser(String user) {
+        List<TestScore> testList = new ArrayList<>();
+        SQLiteDatabase MyDB = getReadableDatabase();
+        Cursor cursor = MyDB.rawQuery("SELECT * FROM users_test WHERE username = ?" , new String[]{user});
+        if (cursor.moveToFirst()) {
+            do {
+                TestScore score = new TestScore();
+                score.setTestid(cursor.getInt(cursor.getColumnIndex("testid")));
+                score.setScore(cursor.getInt(cursor.getColumnIndex("score")));
+                score.setTeststatus(cursor.getString(cursor.getColumnIndex("teststatus")));
+                testList.add(score);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return testList;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
         MyDB.execSQL("drop Table if exists users");
@@ -81,10 +99,26 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public Boolean insertScore(String username, int score){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues= new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("score", score);
+        if(score > 1){
+            contentValues.put("teststatus", "Pass");
+        }
+        long result = MyDB.insert("users_test", null, contentValues);
+        if(result==-1) return false;
+        else
+            return true;
+    }
+
     public Boolean insertAttemptCount(String user){
         Log.v(TAG, "User=" + user);
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
+        ContentValues contentValuesTwo= new ContentValues();
+        contentValues.put("username", user);
         Cursor cursor = MyDB.rawQuery("SELECT numberofattempts FROM users where username = ?", new String[]{user});
         if(cursor.moveToFirst()){
             int x = cursor.getInt(cursor.getColumnIndex("numberofattempts"))+1;
@@ -98,6 +132,21 @@ public class DBHelper extends SQLiteOpenHelper {
             }
         }
         return false;
+    }
+
+    public int checkAttemptCount(String user){
+        int x = 0;
+        Log.v(TAG, "User=" + user);
+        Log.v(TAG, "Count=" + x);
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("SELECT numberofattempts FROM users where username = ?", new String[]{user});
+        if(cursor.moveToFirst()){
+            x = cursor.getInt(cursor.getColumnIndex("numberofattempts"));
+            if(x<3){
+                return x;
+            }
+        }
+        return x;
     }
 
     public Boolean checkusername(String username) {

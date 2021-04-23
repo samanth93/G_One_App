@@ -3,13 +3,15 @@ package com.gone.g_one_app;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    private TextView textViewFinalscore;
     EditText username, password, repassword;
     Button signup, signin;
     DBHelper DB;
@@ -39,13 +41,10 @@ public class MainActivity extends AppCompatActivity {
                         if(checkuser==false){
                             Boolean insert = DB.insertData(user, pass);
                             if(insert==true){
-                                if(DB.insertAttemptCount(user)){
-                                    Toast.makeText(MainActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(),TestActivity.class);
-                                    startActivity(intent);
-                                }else{
-                                    Toast.makeText(MainActivity.this, "You exceeded 3 attempts, Sorry!!", Toast.LENGTH_SHORT).show();
-                                }
+                                Toast.makeText(MainActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(),StartTestPage.class);
+                                intent.putExtra("user", user);
+                                startActivity(intent);
                             }else{
                                 Toast.makeText(MainActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                             }
@@ -67,4 +66,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
